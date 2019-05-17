@@ -1,0 +1,26 @@
+version: '3.0'
+
+services:
+
+  hack-server:
+    network_mode: "bridge"
+    container_name: hack-server
+    build:
+      context: server
+    ports:
+    - "8080:8080"
+    links:
+    - hack-db
+    environment:
+    - PLUG_IP=192.168.43.145
+    - PLUG_PORT=9999
+    - DB_ADDRESS=hack-db:3306
+
+  hack-db:
+    image: mariadb:latest
+    network_mode: "bridge"
+    container_name: hack-db
+    environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    volumes:
+    - "./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
