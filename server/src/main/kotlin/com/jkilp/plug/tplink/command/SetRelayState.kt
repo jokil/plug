@@ -22,5 +22,4 @@ Turn On
 
 Turn Off
 {"system":{"set_relay_state":{"state":0}}}
-
  */

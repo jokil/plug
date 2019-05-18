@@ -52,6 +52,7 @@ class PlugService(
 
         val socket = Socket()
         socket.connect(InetSocketAddress(ip, port))
+        socket.soTimeout = 1000
         val outputStream = socket.getOutputStream()
         outputStream.write(encrypted)
         outputStream.flush()
